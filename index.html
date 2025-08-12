@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Three.js Demo</title>
+  <meta charset="UTF-8" />
+  <title>Виртуальный парк памяти великого Данона</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html,body { margin:0; height:100%; overflow:hidden; font-family: Arial, sans-serif; }
+    #overlay {
+      position: absolute; left:0; right:0; top:0; bottom:0;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.25); color:#fff; z-index:5;
+      flex-direction:column;
+    }
+    #overlay.hidden { display:none; }
+    #instructions {
+      max-width:520px; text-align:center; backdrop-filter: blur(2px);
+      padding: 18px; border-radius:10px; background: rgba(0,0,0,0.5);
+    }
+    #fps { position: absolute; left:12px; top:12px; color:#fff; z-index:4; font-size:14px; }
+    canvas { display:block; }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body>
-  <script src="script.js"></script>
+  <div id="overlay">
+    <div id="instructions">
+      <h2>Инструкция для посетителей музея великого Кемеровского музыканта</h2>
+      <p>Двигаться: <strong>W A S D</strong> Мышь — смотреть</p>
+      <p>Esc — выйти из режима просмотра</p>
+      <button id="startBtn">Начать</button>
+    </div>
+  </div>
+  <div id="fps"></div>
+  <script src="script.js" defer></script>
 </body>
+<div id="modal" class="hidden">
+  <div class="modal-content">
+    <h2>Памятник Марку "Danone" Измайлову</h2>
+    <p>За все заслуги в развитии отечественной музыкальной индустрии и создании нового, свежего звучания.</p>
+  </div>
+</div>
+
+<style>
+#modal {
+  position: fixed;
+  left:0; top:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+#modal.hidden { display: none; }
+.modal-content {
+  background: #fff;
+  color: #000;
+  padding: 20px 30px;
+  border-radius: 8px;
+  max-width: 300px;
+  text-align: center;
+}
+</style>
 </html>
