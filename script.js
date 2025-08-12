@@ -128,9 +128,17 @@ yawObject.position.set(0, 1.6, 12); // player eye height ~1.6
 // Pointer lock and instructions
 const overlay = document.getElementById('overlay');
 const startBtn = document.getElementById('startBtn');
+const sound = new Audio('sound.mp3');  // создаём один раз
 
 startBtn.addEventListener('click', () => {
   renderer.domElement.requestPointerLock();
+
+  if (sound.paused) {
+    sound.play().catch(err => console.log('Ошибка воспроизведения звука:', err));
+  } else {
+    // звук уже играет — не запускаем новый
+    console.log('Звук уже играет');
+  }
 });
 
 // Pointer lock change
